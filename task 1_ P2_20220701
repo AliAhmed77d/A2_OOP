@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+bool isWord(const std::string& word) {
+    for (char c : word) {
+        if (!isalpha(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+string replacePronouns(const std::string& sentence) {
+    istringstream iss(sentence);
+    ostringstream oss;
+    string word;
+
+    while (iss >> word) {
+        if (word == "he") {
+            if (!isWord(word)) {
+                oss << "he or she" << word;
+            } else {
+                oss << "he or she";
+            }
+        } else if (word == "his") {
+            if (!isWord(word)) {
+                oss << "his or her" << word;
+            } else {
+                oss << "his or her";
+            }
+        } else if (word == "him") {
+            if (!isWord(word)) {
+                oss << "him or her" << word;
+            } else {
+                oss << "him or her";
+            }
+        } else {
+            if (!oss.str().empty()) {
+                if (!isWord(word)) {
+                    oss << " " << word;
+                } else {
+                    oss << word;
+                }
+            } else {
+                oss << word;
+            }
+        }
+        oss << " ";
+    }
+
+    return oss.str();
+}
+
+int main() {
+    string sentence;
+    cout << "Enter a sentence: ";
+    getline(std::cin, sentence);
+
+    string inclusiveSentence = replacePronouns(sentence);
+
+    cout << "Inclusive Speech: " << inclusiveSentence << endl;
+
+    return 0;
+}
