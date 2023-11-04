@@ -13,17 +13,19 @@ Date: 25 Oct 2023
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 struct dominoT {
     int leftDots;
     int rightDots;
 };
 
 // Function to find a domino chain recursively
-bool FormsDominoChain(std::vector<dominoT> &dominos, std::vector<dominoT> &chain) {
+bool FormsDominoChain(vector<dominoT> &dominos, vector<dominoT> &chain) {
     if (chain.empty()) {
         for (size_t i = 0; i < dominos.size(); i++) {
-            std::vector<dominoT> newChain = {dominos[i]};
-            std::vector<dominoT> newDominos = dominos;
+            vector<dominoT> newChain = {dominos[i]};
+            vector<dominoT> newDominos = dominos;
             newDominos.erase(newDominos.begin() + i);
             if (FormsDominoChain(newDominos, newChain)) {
                 chain = newChain;
@@ -35,7 +37,7 @@ bool FormsDominoChain(std::vector<dominoT> &dominos, std::vector<dominoT> &chain
         for (size_t i = 0; i < dominos.size(); i++) {
             if (dominos[i].leftDots == rightDots) {
                 chain.push_back(dominos[i]);
-                std::vector<dominoT> newDominos = dominos;
+                vector<dominoT> newDominos = dominos;
                 newDominos.erase(newDominos.begin() + i);
                 if (FormsDominoChain(newDominos, chain)) {
                     return true;
@@ -48,15 +50,15 @@ bool FormsDominoChain(std::vector<dominoT> &dominos, std::vector<dominoT> &chain
 }
 
 // Function to print the domino chain
-void PrintDominoChain(const std::vector<dominoT> &chain) {
+void PrintDominoChain(const vector<dominoT> &chain) {
     for (const dominoT &domino : chain) {
-        std::cout << domino.leftDots << "|" << domino.rightDots << " - ";
+        cout << domino.leftDots << "|" << domino.rightDots << " - ";
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 int main() {
-    std::vector<dominoT> dominoSet = {
+    vector<dominoT> dominoSet = {
             {2, 6},
             {6, 1},
             {1, 4},
@@ -64,12 +66,12 @@ int main() {
             {4, 3}
     };
 
-    std::vector<dominoT> chain;
+    vector<dominoT> chain;
     if (FormsDominoChain(dominoSet, chain)) {
-        std::cout << "Domino Chain: ";
+        cout << "Domino Chain: ";
         PrintDominoChain(chain);
     } else {
-        std::cout << "No valid domino chain found." << std::endl;
+        cout << "No valid domino chain found." << endl;
     }
 
     return 0;
