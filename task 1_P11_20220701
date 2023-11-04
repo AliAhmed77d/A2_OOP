@@ -1,0 +1,80 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+using namespace std;
+bool compareCharacterByCharacter(ifstream& file1, ifstream& file2) {
+    char ch1, ch2;
+    int line = 1, position = 0;
+
+    while (file1.get(ch1) && file2.get(ch2)) {
+        position++;
+        if (ch1 != ch2) {
+            cout << "Files differ at line " << line << ", position " << position << std::endl;
+            return false;
+        }
+        if (ch1 == '\n') {
+            line++;
+            position = 0;
+        }
+    }
+
+    return true;
+}
+
+bool compareWordByWord(ifstream& file1, ifstream& file2) {
+    string word1, word2;
+    int line = 1;
+
+    while (file1 >> word1 && file2 >> word2) {
+        if (word1 != word2) {
+            cout << "Files differ at line " << line << ": " << word1 << " != " << word2 << endl;
+            return false;
+        }
+        if (word1.find('\n') != string::npos) {
+            line++;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    string filename1, filename2;
+    ifstream file1, file2;
+    char choice;
+
+    cout << "Enter the name of the first file: ";
+    cin >> filename1;
+    file1.open(filename1);
+
+    cout << "Enter the name of the second file: ";
+    cin >> filename2;
+    file2.open(filename2);
+
+    if (!file1.is_open() || !file2.is_open()) {
+        std::cerr << "Failed to open one or both files. Exiting..." << endl;
+        return 1;
+    }
+
+    cout << "Choose comparison type (c: character by character, w: word by word): ";
+    cin >> choice;
+
+    if (choice == 'c') {
+        if (compareCharacterByCharacter(file1, file2)) {
+            std::cout << "Files are identical." << endl;
+        }
+    } else if (choice == 'w') {
+        if (compareWordByWord(file1, file2)) {
+            std::cout << "Files are identical." << endl;
+        }
+    } else {
+        cerr << "Invalid choice. Please enter 'c' for character comparison or 'w' for word comparison." << endl;
+    }
+
+    file1.close();
+    file2.close();
+
+    return 0;
+}
+
