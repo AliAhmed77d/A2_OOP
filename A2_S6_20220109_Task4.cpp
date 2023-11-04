@@ -1,10 +1,10 @@
 /*
-File:A2_S6_20220109_4.cpp
+File: A2_S6_20220109_4.cpp
 Purpose: To know all the prime numbers from 2 to the number
 Author: Hussam Eldin Hesham Ahmed
 Section: S6
 ID: 20220109
-TA: ........................
+TA: Mohamed Talaat
 Date: 25 Oct 2023
 */
 
