@@ -1,10 +1,10 @@
 /*
-File:A2_S6_20220109_1.cpp
+File: A2_S6_20220109_Task1.cpp
 Purpose: To organize the sentence and remove any extras
 Author: Hussam Eldin Hesham Ahmed
 Section: S6
 ID: 20220109
-TA: ........................
+TA: Mohamed Talaat
 Date: 25 Oct 2023
 */
 
