@@ -1,5 +1,5 @@
 /*
-File: A2_S6_20220109_4.cpp
+File: A2_S16_20220109_4.cpp
 Purpose: To know all the prime numbers from 2 to the number
 Author: Hussam Eldin Hesham Ahmed
 Section: S16
