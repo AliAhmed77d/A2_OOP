@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+struct Player {
+    std::string name;
+    int score;
+};
+void addPlayer(vector<Player>& players, const Player& newPlayer) {
+    players.push_back(newPlayer);
+    std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
+        return a.score > b.score;
+    });
+    if (players.size() > 10) {
+        players.pop_back();
+    }
+}
+void printTopPlayers(const vector<Player>& players) {
+    cout << "Top 10 Players:\n";
+    for (size_t i = 0; i < players.size(); ++i) {
+        cout << players[i].name << " - " << players[i].score << "\n";
+    }
+}
+
+int findPlayerScore(const vector<Player>& players, const string& playerName) {
+    for (const Player& player : players) {
+        if (player.name == playerName) {
+            return player.score;
+        }
+    }
+    return -1; 
+}
+
+int main() {
+    vector<Player> players;
+
+    while (true) {
+        cout << "Menu:\n";
+        cout << "1. Add a new player and score\n";
+        cout << "2. Print the top 10 players\n";
+        cout << "3. Find a player's highest score\n";
+        cout << "4. Quit\n";
+        cout << "Enter your choice: ";
+
+        int choice;
+        cin >> choice;
+
+        if (choice == 4) {
+            break; // Exit the program
+        }
+
+        if (choice == 1) {
+            Player newPlayer;
+            cout << "Enter player name: ";
+            cin >> newPlayer.name;
+            cout << "Enter player score: ";
+            cin >> newPlayer.score;
+            addPlayer(players, newPlayer);
+        } else if (choice == 2) {
+            printTopPlayers(players);
+        } else if (choice == 3) {
+            string playerName;
+            cout << "Enter player name: ";
+            cin >> playerName;
+            int playerScore = findPlayerScore(players, playerName);
+            if (playerScore != -1) {
+                cout << playerName << "'s highest score: " << playerScore << "\n";
+            } else {
+                cout << "Player not found in the top 10 list.\n";
+            }
+        } else {
+            cout << "Invalid choice. Please try again.\n";
+        }
+    }
+
+    return 0;
+}
