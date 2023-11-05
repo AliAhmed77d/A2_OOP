@@ -1,8 +1,8 @@
 /*
-File:A2_S6_20220109_Task7.cpp
+File:A2_S16_20220109_Task7.cpp
 Purpose: To check whether the domino rectangles can connect with each other or not
 Author: Hussam Eldin Hesham Ahmed
-Section: S6
+Section: S16
 ID: 20220109
 TA: Mohamed Talaat
 Date: 25 Oct 2023
