@@ -1,55 +1,80 @@
 #include <iostream>
 using namespace std;
 
-bool BigReal(const string& realNumber ) {
-    BigReal(double realNumber) {
+class BigReal {
+public:
+    BigReal(const string& realNumber);
+    BigReal(const BigReal& other);
+    BigReal& operator=(const BigReal& other);
 
+    void setNum(const string& realNumber);
+    int size() const;
+    int sign() const;
+    BigReal operator+(const BigReal& other) const;
+    BigReal operator-(const BigReal& other) const;
+    bool operator<(const BigReal& anotherReal) const;
+    bool operator>(const BigReal& anotherReal) const;
+    bool operator==(const BigReal& anotherReal) const;
+
+    friend ostream& operator<<(ostream& out, const BigReal& num);
+};
+
+BigReal::BigReal(const string& realNumber) {
+    // Implementation of the constructor
+}
+
+BigReal::BigReal(const BigReal& other) {
+    // Implementation of the copy constructor
+}
+
+BigReal& BigReal::operator=(const BigReal& other) {
+    if (this == &other) {
+        return *this;
     }
 
-    BigReal::BigReal(
-    const std::string &realNumber) {
+    // Implementation of the assignment operator
 
-    }
+    return *this;
+}
 
-    BigReal::BigReal(
-    const BigReal &other) {
+void BigReal::setNum(const string& realNumber) {
+    // Implementation of the setNum function
+}
 
-    }
+int BigReal::size() const {
+    // Implementation of the size function
+}
 
-    BigReal &BigReal::operator=(const BigReal &other) {
+int BigReal::sign() const {
+    // Implementation of the sign function
+}
 
-    }
+BigReal BigReal::operator+(const BigReal& other) const {
+    // Implementation of the addition operator
+}
 
-    void BigReal::setNum(const string &realNumber) {
+BigReal BigReal::operator-(const BigReal& other) const {
+    // Implementation of the subtraction operator
+}
 
-    }
+bool BigReal::operator<(const BigReal& anotherReal) const {
+    // Implementation of the less than operator
+}
 
-    int BigReal::size() const {
-    }
+bool BigReal::operator>(const BigReal& anotherReal) const {
+    // Implementation of the greater than operator
+}
 
-    int BigReal::sign() const {
-    }
+bool BigReal::operator==(const BigReal& anotherReal) const {
+    // Implementation of the equality operator
+}
 
-    BigReal BigReal::operator+(const BigReal &other) const {
+ostream& operator<<(ostream& out, const BigReal& num) {
+    // Implementation of the insertion operator
+}
 
-    }
+int main() {
+    // Your code here
 
-    BigReal BigReal::operator-(const BigReal &other) const {
-
-    }
-
-    bool BigReal::operator<(const BigReal &anotherReal) const {
-        // Implement the less than operator
-    }
-
-    bool BigReal::operator>(const BigReal &anotherReal) const {
-    }
-
-    bool BigReal::operator==(const BigReal &anotherReal) const {
-    }
-
-    ostream &operator<<(ostream &out, const BigReal &num) {
-
-    }
     return 0;
 }
